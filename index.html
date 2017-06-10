@@ -9,8 +9,9 @@
     <h1>Hangman Game</h1>
     <p>Guess the word!</p>
     <p>{{displayWord}}</p>
+    <p id="error"></p>
     <input type="text" placeholder="your guess" ng-model="guess">
-    <button ng-click="checkLetter()">Check</button>
+    <button ng-click="validateAndCheckLetter()">Check</button>
     <p ng-repeat="item in incorrectGuesses">{{item}}</p>
 
     <script src="bower_components/angular/angular.min.js"></script>

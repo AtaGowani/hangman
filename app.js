@@ -31,7 +31,19 @@ app.controller('GameController', function($scope){
   //gets correct number of '*' and stores it in $scope.displayWord
   $scope.displayWord = convertToSecret();
 
-  $scope.checkLetter = function() {
+  $scope.validateAndCheckLetter = function () {
+
+    if(!($scope.guess) || $scope.guess.length != 1){
+      console.log('Not a valid input.');
+      document.getElementById('error').innerHTML = 'Please enter a valid input.';
+    }
+    else{
+      document.getElementById('error').innerHTML = '';
+      checkLetter();
+    }
+  }
+
+  var checkLetter = function() {
     var correct = false;
     var hold = $scope.displayWord;
     $scope.displayWord = '';

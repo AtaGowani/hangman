@@ -1,7 +1,7 @@
 var app = angular.module('HangmanApp', []);
 
 app.controller('GameController', function($scope){
-  var words = ['cow', 'goat', 'boat', 'float' , 'lion', 'tiger', 'math', 'trello', 'chello', 'hello'];
+  var words = ['Cow', 'Goat', 'Boat', 'Float' , 'Lion', 'Tiger', 'Math', 'Trello', 'Chello', 'Hello'];
 
   //the variables that need to accesible from DOM
   $scope.numberOfGuesses = 6;
@@ -39,7 +39,7 @@ app.controller('GameController', function($scope){
     //go through each letter and see if any match the input
     for(var i = 0; i < selectedWord.length; i++){
       //if input matches replace '*' with whatever it matched with
-      if($scope.guess == selectedWord[i]){
+      if($scope.guess.toLowerCase() == selectedWord[i].toLowerCase()){
         //if input matches letter in the word
         correct = true;
 

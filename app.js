@@ -1,15 +1,15 @@
 var app = angular.module('HangmanApp', []);
 
 app.controller('GameController', function($scope){
-  var words = ['cow', 'goat', 'boat', 'float' , 'lion', 'tiger', 'math'];
+  var words = ['cow', 'goat', 'boat', 'float' , 'lion', 'tiger', 'math', 'trello', 'chello', 'hello'];
 
   //the variables that need to accesible from DOM
   $scope.numberOfGuesses = 6;
-  $scope.displayWord = '';
+  $scope.displayWord;
   $scope.incorrectGuesses = [];
 
   //other variables
-  var THEword;
+  var selectedWord;
 
   var selectWord = function(){
     var index = Math.round(Math.random() * (words.length - 1));
@@ -17,46 +17,42 @@ app.controller('GameController', function($scope){
   }
 
   //store the selected word into variable 
-  THEword = selectWord();
-  console.log(THEword);
+  selectedWord = selectWord();
+  console.log(selectedWord);
 
-  var getSecret = function(){
-    for (var i = 0; i < THEword.length; i++){
-      $scope.displayWord += '*';
+  convertToSecret = function (){
+    var secretWord = '';
+    for (var i = 0; i < selectedWord.length; i++){
+      secretWord += '*';
     }
+     return secretWord;
   }
 
   //gets correct number of '*' and stores it in $scope.displayWord
-  getSecret();
+  $scope.displayWord = convertToSecret();
 
-  console.log($scope.displayWord);
-
-  console.log($scope.guess);
-
-  $scope.checkLetter = function(){
+  $scope.checkLetter = function() {
     var correct = false;
-    console.log('Function Called!!');
-    for(var i = 0; i < THEword.length; i++){
-      if($scope.guess == THEword[i]){
+    var hold = $scope.displayWord;
+    $scope.displayWord = '';
+
+    //go through each letter and see if any match the input
+    for(var i = 0; i < selectedWord.length; i++){
+      //if input matches replace '*' with whatever it matched with
+      if($scope.guess == selectedWord[i]){
+        //if input matches letter in the word
         correct = true;
-        console.log('its equal');
-        var hold = $scope.displayWord;
-        $scope.displayWord = '';
-        for(var j =0; j < THEword.length; j++){
-          if(j != i){
-            $scope.displayWord += hold[j]; 
-          }
-          else{
-            $scope.displayWord += $scope.guess;
-          }
-        }
-        
+
+        $scope.displayWord += selectedWord[i];
+      }
+      else{
+        $scope.displayWord += hold[i];
       }
     }
     if(!correct){
       $scope.incorrectGuesses += $scope.guess;
     }
+    //empty the input for the user
+    $scope.guess = '';
   }
-
-
 });

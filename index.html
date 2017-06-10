@@ -11,7 +11,6 @@
     <p>{{displayWord}}</p>
     <input type="text" placeholder="your guess" ng-model="guess">
     <button ng-click="checkLetter()">Check</button>
-    <p ng-if="guess">You guessed {{guess}} correct?</p>
     <p ng-repeat="item in incorrectGuesses">{{item}}</p>
 
     <script src="bower_components/angular/angular.min.js"></script>

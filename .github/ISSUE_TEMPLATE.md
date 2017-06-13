@@ -1,6 +1,6 @@
 # Description
 
-<!-- Descibe the issue -->
+<!-- Describe the issue -->
 
 # Now:
 

@@ -4,19 +4,40 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="src/css/style.css">
     <title>Hangman Game</title>
   </head>
   <body ng-controller="GameController">
-    <h1>Hangman Game</h1>
-    <p>Guess the word!</p>
-    <p>{{displayWord}}</p>
-    <p id="error"></p>
-    <input type="text" placeholder="your guess" ng-model="guess">
-    <button ng-click="validateAndCheckLetter()">Check</button>
-    <p ng-repeat="item in incorrectGuesses">{{item}}</p>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h1>Hangman Game</h1>
+          <p>Guess the word!</p>
+          <p>{{gameVariables.displayWord}}</p>
+          <p id="error"></p>
+          <div class="col-6 text-center">
+            <form autocomplete="off">
+              <div class="form-group">
+                <input type="text" placeholder="your guess" id="userInput" class="form-control" ng-model="guess">
+              </div>
+              <button class="btn btn-primary" type="submit" ng-click="checkInput()">ENTER</button>
+            </form>
+          </div>
+        </div>
+        <div class="col-12 text-center text-danger">
+          <span class="incorrectList" ng-repeat="letter in gameVariables.incorrectGuesses"> {{letter}}</span>
+        </div>
+      </div>
+    </div>
 
+    <!-- jQuery first, then Tether, then Bootstrap JS. -->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/tether/dist/js/tether.min.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="bower_components/angular/angular.min.js"></script>
-    <script src="app.js"></script>
+
+    <!-- first game.js then index.js -->
+    <script src="src/js/game.js"></script>
+    <script src="src/js/index.js"></script>
   </body>
 </html>

@@ -13,7 +13,7 @@
         <div class="col-12 text-center">
           <h1 class="display-3">Hangman Game</h1>
           <p class="lead">Guess the word!</p>
-          <p class="secret lead">{{gameVariables.displayWord}}</p>
+          <p class="secret lead" ng-bind="userDisplayWord()"></p>
           <p id="error"></p>
         </div>
       </div>
@@ -21,7 +21,7 @@
         <div class="col-12 text-center">
           <form autocomplete="off">
             <div class="form-group">
-              <input type="text" placeholder="your guess" id="userInput" class="form-control" ng-trim="true" ng-model="guess">
+              <input type="text" placeholder="your guess" class="form-control" ng-trim="true" ng-model="guess">
               <p class="form-text text-muted">
                 Enter a single letter
               </p>
@@ -32,7 +32,9 @@
       </div>
       <div class="row">
         <div class="col-12 text-center text-danger">
-          <span class="incorrectList" ng-repeat="letter in gameVariables.incorrectGuesses"> {{letter}}</span>
+          <span class="incorrectList" ng-if="userDisplayIncorrectGuesses()" ng-bind="userDisplayIncorrectGuesses()">
+            <!-- This is where the incorrect guesses will show. -->
+          </span>
         </div>
       </div>
     </div>

@@ -4,7 +4,11 @@
 
 body{
   position: absolute;
-  top: 25%;
+  top: 15%;
   right: 0;
   left: 0;
+}
+
+.secret{
+  font-size: 30px;
 }

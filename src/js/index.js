@@ -2,7 +2,8 @@ var app = angular.module('HangmanApp', []);
 
 app.controller('GameController', function($scope){
 
-var words = ['Cow', 'Goat', 'Boat', 'Float' , 'Lion', 'Tiger', 'Math', 'Trello', 'Chello', 'Hello']
+  var words = ['Cow', 'Goat', 'Boat', 'Float' , 'Lion', 'Tiger', 'Math', 'Trello', 'Chello', 'Hello']
+  var allGuesses = []
 
   $scope.gameVariables = {
     numberOfIncorrectGuesses: 6,
@@ -34,12 +35,13 @@ var words = ['Cow', 'Goat', 'Boat', 'Float' , 'Lion', 'Tiger', 'Math', 'Trello',
 
   $scope.checkInput = function(){
     var userInput = $scope.guess
-    console.log($scope.guess)
     $scope.guess = '' //clear the input field for the user
 
-    var validated = game.validateInput(userInput)
+    var validated = game.validateInput(userInput, allGuesses)
 
     if(validated){
+      console.log('Validated!')
+      allGuesses += userInput
       var correct = game.check(userInput, selectedWord)
       if(correct){
         game.reveal(userInput, $scope.gameVariables, selectedWord)

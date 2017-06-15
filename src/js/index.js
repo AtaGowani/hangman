@@ -17,7 +17,8 @@ var words = ['Cow', 'Goat', 'Boat', 'Float' , 'Lion', 'Tiger', 'Math', 'Trello',
   $scope.gameVariables.displayWord = game.convertToSecret(selectedWord)
 
   $scope.checkInput = function(){
-    var userInput = $scope.guess;
+    var userInput = $scope.guess
+    console.log($scope.guess)
     $scope.guess = '' //clear the input field for the user
 
     var validated = game.validateInput(userInput)

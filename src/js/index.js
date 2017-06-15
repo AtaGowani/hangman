@@ -1,6 +1,6 @@
 var app = angular.module('HangmanApp', []);
 
-app.controller('GameController', function($scope){
+app.controller('GameController', ['$scope', function($scope){
 
   var words = ['Cow', 'Goat', 'Boat', 'Float' , 'Lion', 'Tiger', 'Math', 'Trello', 'Chello', 'Hello']
   var allGuesses = []
@@ -55,4 +55,4 @@ app.controller('GameController', function($scope){
       console.log('There was an error')
     }
   }
-})
+}])

@@ -1,7 +1,10 @@
-.container{
-  top: 50%;
-}
-
 .input{
   padding: 0 30%; 
+}
+
+body{
+  position: absolute;
+  top: 25%;
+  right: 0;
+  left: 0;
 }

@@ -19,11 +19,11 @@ game.selectWord = function(randomWords){
   return randomWords[index]
 }
 
-// function to convert word into a secret with *
+// function to convert word into a secret with _
 game.convertToSecret = function (word){
   var secretWord = ''
   for (var i = 0; i < word.length; i++){
-    secretWord += '*'
+    secretWord += '_ '
   }
     return secretWord
 }
@@ -41,17 +41,15 @@ game.check = function(userGuess, correctWord) {
 
 //function to reveal letters that have matched
 game.reveal = function(userGuess, gameVariables, correctWord) {
-  var hold = gameVariables.displayWord
+  var hold = gameVariables.displayWord.replace(/ /g,'') //removes all spaces before storing
   gameVariables.displayWord = ''
-  console.log('The function ran')
 
   for(var i = 0; i < correctWord.length; i++){
     if(userGuess.toLowerCase() == correctWord[i].toLowerCase()){
-      console.log('guess was correct')
-      gameVariables.displayWord += correctWord[i]
+      gameVariables.displayWord += correctWord[i] + ' '
     }
     else{
-      gameVariables.displayWord += hold[i]
+      gameVariables.displayWord += hold[i] + ' '
     }
   }
 }

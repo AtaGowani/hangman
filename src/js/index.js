@@ -10,6 +10,22 @@ var words = ['Cow', 'Goat', 'Boat', 'Float' , 'Lion', 'Tiger', 'Math', 'Trello',
     displayWord: ''
   }
 
+  //serve the display of the secret to the user
+  $scope.userDisplayWord = function(){
+    return $scope.gameVariables.displayWord
+  }
+
+  //serve the missed leeters to the user
+  $scope.userDisplayIncorrectGuesses = function(){
+    //only return if there is something there
+    if($scope.gameVariables.incorrectGuesses.length){
+      return $scope.gameVariables.incorrectGuesses
+    }
+    else{
+      return false
+    }
+  }
+
   //store the selected word into variable 
   var selectedWord = game.selectWord(words)
   console.log(selectedWord)
@@ -17,7 +33,8 @@ var words = ['Cow', 'Goat', 'Boat', 'Float' , 'Lion', 'Tiger', 'Math', 'Trello',
   $scope.gameVariables.displayWord = game.convertToSecret(selectedWord)
 
   $scope.checkInput = function(){
-    var userInput = $scope.guess;
+    var userInput = $scope.guess
+    console.log($scope.guess)
     $scope.guess = '' //clear the input field for the user
 
     var validated = game.validateInput(userInput)

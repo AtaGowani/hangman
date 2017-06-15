@@ -16,14 +16,12 @@ var words = ['Cow', 'Goat', 'Boat', 'Float' , 'Lion', 'Tiger', 'Math', 'Trello',
 
   $scope.gameVariables.displayWord = game.convertToSecret(selectedWord)
 
-  $scope.checkInput = function(){
-    var userInput = $scope.guess
-    console.log($scope.guess)
-    $scope.guess = '' //clear the input field for the user
+  $scope.checkInput = function(valid){
+    if(valid){
+      var userInput = $scope.guess
+      console.log($scope.guess)
+      $scope.guess = '' //clear the input field for the user
 
-    var validated = game.validateInput(userInput)
-
-    if(validated){
       var correct = game.check(userInput, selectedWord)
       if(correct){
         game.reveal(userInput, $scope.gameVariables, selectedWord)

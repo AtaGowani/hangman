@@ -1,13 +1,24 @@
 var game = {}
+var errorObj
 
 // function to validate user input
-game.validateInput = function (userInput) {
+game.validateInput = function (userInput, userGuesses) {
   if(!(userInput) || userInput.length != 1){
     console.log('Not a valid input.')
     $('#error').html('Please enter a valid input.')
+    errorObj = Error('the inpout is npt okay.')
+    console.log(errorObj)
     return false
   }
   else{
+    console.log(userGuesses)
+    for(var i = 0; userGuesses && i < userGuesses.length; i++){
+      console.log('helloooo')
+      if(userInput == userGuesses[i]){
+        console.log('repeat')
+        return false
+      }
+    }
     $('#error').html('')
     return true
   }

@@ -1,4 +1,5 @@
 var game = {}
+var errorObj
 
 // function to select a word randomly
 game.selectWord = function(randomWords){

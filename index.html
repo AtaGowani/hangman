@@ -15,18 +15,24 @@
           <p>Guess the word!</p>
           <p>{{gameVariables.displayWord}}</p>
           <p id="error"></p>
-          <div class="col-6 text-center">
-            <form autocomplete="off">
-              <div class="form-group">
-                <input type="text" placeholder="your guess" id="userInput" class="form-control" ng-model="guess">
-              </div>
-              <button class="btn btn-primary" type="submit" ng-click="checkInput()">ENTER</button>
-            </form>
-          </div>
         </div>
+      </div>
+      <div class="row input">
+        <div class="col-12 text-center">
+          <form autocomplete="off">
+            <div class="form-group">
+              <input type="text" placeholder="your guess" id="userInput" class="form-control" ng-model="guess">
+            </div>
+            <button class="btn btn-primary" type="submit" ng-click="checkInput()">ENTER</button>
+          </form>
+        </div>
+      </div>
+      <div class="row">
         <div class="col-12 text-center text-danger">
           <span class="incorrectList" ng-repeat="letter in gameVariables.incorrectGuesses"> {{letter}}</span>
         </div>
+      </div>
+    </div>
       </div>
     </div>
 

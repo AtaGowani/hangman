@@ -33,15 +33,12 @@ app.controller('GameController', ['$scope', function($scope){
 
   $scope.gameVariables.displayWord = game.convertToSecret(selectedWord)
 
-  $scope.checkInput = function(){
-    var userInput = $scope.guess
-    $scope.guess = '' //clear the input field for the user
+  $scope.checkInput = function(valid){
+    if(valid){
+      var userInput = $scope.guess
+      console.log($scope.guess)
+      $scope.guess = '' //clear the input field for the user
 
-    var validated = game.validateInput(userInput, allGuesses)
-
-    if(validated){
-      console.log('Validated!')
-      allGuesses += userInput
       var correct = game.check(userInput, selectedWord)
       if(correct){
         game.reveal(userInput, $scope.gameVariables, selectedWord)

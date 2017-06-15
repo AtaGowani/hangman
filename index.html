@@ -13,20 +13,24 @@
         <div class="col-12 text-center">
           <h1 class="display-3">Hangman Game</h1>
           <p class="lead">Guess the word!</p>
+          
           <p class="secret lead" ng-bind="userDisplayWord()"></p>
+
           <p id="error"></p>
         </div>
       </div>
       <div class="row input">
         <div class="col-12 text-center">
-          <form autocomplete="off">
+          
+          <form autocomplete="off" name="userInput" ng-submit="checkInput(userInput.$valid)">
             <div class="form-group">
-              <input type="text" placeholder="your guess" class="form-control" ng-trim="true" ng-model="guess">
-              <p class="form-text text-muted">
-                Enter a single letter
+              <input type="text" name="letter" placeholder="your guess" id="userInput" class="form-control" ng-trim="true" ng-model="guess" ng-maxlength="1" required>
+              <p ng-if="userInput.letter.$error.maxlength" class="form-text text-muted">
+                You can only enter <strong>one</strong> letter.
               </p>
             </div>
-            <button class="btn btn-primary" type="submit" ng-click="checkInput()">ENTER</button>
+            <button class="btn btn-primary" type="submit">ENTER</button>
+
           </form>
         </div>
       </div>

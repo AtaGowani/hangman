@@ -27,7 +27,7 @@
               <label for="userGuess" class="sr-only">Enter Letter</label> <!-- for screen readers -->
               <input type="text" name="letter" id="userGuess" placeholder="your guess" id="userInput" class="form-control" ng-trim="true" ng-model="guess" ng-maxlength="1" ng-class="{'form-control-warning' : userInput.letter.$error.maxlength}" required>
               <p ng-if="userInput.letter.$error.maxlength" class="form-control-feedback">
-                You can only enter <strong>one</strong> letter.
+                Please enter <strong>one</strong> letter at a time.
               </p>
             </div>
             <button class="btn btn-primary" type="submit">ENTER</button>

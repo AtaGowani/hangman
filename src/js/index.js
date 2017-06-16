@@ -1,6 +1,6 @@
 var app = angular.module('HangmanApp', []);
 
-app.controller('GameController', ['$scope', function($scope){
+app.controller('GameController', ['$scope', '$log', function($scope, $log){
 
   var words = ['Cow', 'Goat', 'Boat', 'Float' , 'Lion', 'Tiger', 'Math', 'Trello', 'Chello', 'Hello']
   var allGuesses = []
@@ -29,14 +29,14 @@ app.controller('GameController', ['$scope', function($scope){
 
   //store the selected word into variable 
   var selectedWord = game.selectWord(words)
-  console.log(selectedWord)
+  $log.info('Word:' + selectedWord)
 
   $scope.gameVariables.displayWord = game.convertToSecret(selectedWord)
 
   $scope.checkInput = function(valid){
     if(valid){
+      $log.info('Input was validated')
       var userInput = $scope.guess
-      console.log($scope.guess)
       $scope.guess = '' //clear the input field for the user
 
       var correct = game.check(userInput, selectedWord)
@@ -49,7 +49,12 @@ app.controller('GameController', ['$scope', function($scope){
       }
     }
     else {
-      console.log('There was an error')
+      $log.warn('Input not validated')
     }
+  }
+
+  // function to check for duplicates
+  $scope.checkDuplicate = function(){
+
   }
 }])

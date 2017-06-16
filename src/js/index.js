@@ -45,7 +45,7 @@ app.controller('GameController', ['$scope', '$log', function($scope, $log){
       }
       else{
         $scope.gameVariables.incorrectGuesses += userInput
-        $scope.gameVariables.numberOfIncorrectGuesses -= 1 
+        $scope.gameVariables.numberOfIncorrectGuesses -= 1
       }
     }
     else {

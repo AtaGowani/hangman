@@ -11,22 +11,6 @@ app.controller('GameController', ['$scope', '$log', function($scope, $log){
     displayWord: ''
   }
 
-  //serve the display of the secret to the user
-  $scope.userDisplayWord = function(){
-    return $scope.gameVariables.displayWord
-  }
-
-  //serve the missed leeters to the user
-  $scope.userDisplayIncorrectGuesses = function(){
-    //only return if there is something there
-    if($scope.gameVariables.incorrectGuesses.length){
-      return $scope.gameVariables.incorrectGuesses
-    }
-    else{
-      return false
-    }
-  }
-
   //store the selected word into variable 
   var selectedWord = game.selectWord(words)
   $log.info('Word:' + selectedWord)
@@ -35,7 +19,6 @@ app.controller('GameController', ['$scope', '$log', function($scope, $log){
 
   $scope.checkInput = function(valid){
     if(valid){
-      $log.info('Input was validated')
       var userInput = $scope.guess
       $scope.guess = '' //clear the input field for the user
 
@@ -51,10 +34,5 @@ app.controller('GameController', ['$scope', '$log', function($scope, $log){
     else {
       $log.warn('Input not validated')
     }
-  }
-
-  // function to check for duplicates
-  $scope.checkDuplicate = function(){
-
   }
 }])

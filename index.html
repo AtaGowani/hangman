@@ -14,7 +14,7 @@
           <h1 class="display-3">Hangman Game</h1>
           <p class="lead">Guess the word!</p>
           
-          <p class="secret lead" ng-bind="userDisplayWord()"></p>
+          <p class="secret lead" ng-cloak>{{gameVariables.displayWord}}</p>
 
           <p id="error"></p>
         </div>
@@ -26,7 +26,7 @@
             <div class="form-group" ng-class="{'has-warning' : userInput.letter.$error.maxlength}">
               <label for="userGuess" class="sr-only">Enter Letter</label> <!-- for screen readers -->
               <input type="text" name="letter" id="userGuess" placeholder="your guess" id="userInput" class="form-control" ng-trim="true" ng-model="guess" ng-maxlength="1" ng-class="{'form-control-warning' : userInput.letter.$error.maxlength}" required>
-              <p ng-if="userInput.letter.$error.maxlength" class="form-control-feedback">
+              <p ng-if="userInput.letter.$error.maxlength" class="form-control-feedback" ng-cloak>
                 Please enter <strong>one</strong> letter at a time.
               </p>
             </div>
@@ -37,8 +37,8 @@
       </div>
       <div class="row">
         <div class="col-12 text-center text-danger">
-          <span class="incorrectList" ng-if="userDisplayIncorrectGuesses()" ng-bind="userDisplayIncorrectGuesses()">
-            <!-- This is where the incorrect guesses will show. -->
+          <span class="incorrectList" ng-if="gameVariables.incorrectGuesses.length" ng-cloak>
+            {{gameVariables.incorrectGuesses}}
           </span>
         </div>
       </div>

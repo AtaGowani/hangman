@@ -14,7 +14,7 @@ app.controller('GameController', ['$scope', '$log', function($scope, $log){
   var selectedWord = game.selectWord(words)
   $log.info('Word:' + selectedWord)
 
-  $scope.gameVariables.incorrectGuessesAllowed = selectedWord.length
+  $scope.gameVariables.incorrectGuessesAllowed = selectedWord.length + 2
 
   $scope.gameVariables.displayWord = game.convertToSecret(selectedWord)
 
@@ -55,7 +55,7 @@ app.controller('GameController', ['$scope', '$log', function($scope, $log){
     selectedWord = game.selectWord(words)
     $log.info('Word:' + selectedWord)
 
-    $scope.gameVariables.incorrectGuessesAllowed = selectedWord.length
+    $scope.gameVariables.incorrectGuessesAllowed = selectedWord.length + 2
     $scope.gameVariables.displayWord = game.convertToSecret(selectedWord)
     $scope.gameVariables.incorrectGuesses = [];
     document.getElementsByTagName("input")[0].removeAttribute("disabled");

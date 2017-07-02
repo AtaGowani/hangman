@@ -6,7 +6,6 @@ app.controller('GameController', ['$scope', '$log', function($scope, $log){
   var allGuesses = []
 
   $scope.gameVariables = {
-    numberOfIncorrectGuesses: 6,
     incorrectGuesses: [],
     displayWord: ''
   }
@@ -14,6 +13,8 @@ app.controller('GameController', ['$scope', '$log', function($scope, $log){
   //store the selected word into variable 
   var selectedWord = game.selectWord(words)
   $log.info('Word:' + selectedWord)
+
+  $scope.gameVariables.incorrectGuessesAllowed = selectedWord.length
 
   $scope.gameVariables.displayWord = game.convertToSecret(selectedWord)
 
@@ -28,7 +29,11 @@ app.controller('GameController', ['$scope', '$log', function($scope, $log){
       }
       else{
         $scope.gameVariables.incorrectGuesses += userInput
-        $scope.gameVariables.numberOfIncorrectGuesses -= 1
+        $scope.gameVariables.incorrectGuessesAllowed -= 1
+
+        if (!$scope.gameVariables.incorrectGuessesAllowed){
+          document.getElementsByTagName("input")[0].setAttribute("disabled","");
+        }
       }
     }
     else {

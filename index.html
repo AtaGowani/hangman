@@ -16,7 +16,12 @@
           
           <p class="secret lead" ng-cloak>{{gameVariables.displayWord}}</p>
 
-          <p id="error"></p>
+          <div>
+            <p ng-show="gameVariables.incorrectGuessesAllowed" ng-cloak>Incorrect Guesses Left: {{gameVariables.incorrectGuessesAllowed}}</p>
+          </div>
+          <div class="alert alert-danger" ng-show="!gameVariables.incorrectGuessesAllowed" ng-cloak>
+            <strong>Oh snap!</strong> Looks like you lost.
+          </div>
         </div>
       </div>
       <div class="row input">
@@ -31,8 +36,8 @@
               </p>
             </div>
             <button class="btn btn-primary" type="submit">ENTER</button>
-
           </form>
+
         </div>
       </div>
       <div class="row">
@@ -48,6 +53,8 @@
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/tether/dist/js/tether.min.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Load AngularJS -->
     <script src="bower_components/angular/angular.min.js"></script>
 
     <!-- first game.js then index.js -->

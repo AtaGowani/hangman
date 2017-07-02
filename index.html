@@ -19,8 +19,11 @@
           <div>
             <p ng-show="gameVariables.incorrectGuessesAllowed" ng-cloak>Incorrect Guesses Left: {{gameVariables.incorrectGuessesAllowed}}</p>
           </div>
-          <div class="alert alert-danger" ng-show="!gameVariables.incorrectGuessesAllowed" ng-cloak>
+          <div class="alert alert-danger" ng-show="!gameVariables.incorrectGuessesAllowed" ng-cloak role="alert">
             <strong>Oh snap!</strong> Looks like you lost.
+          </div>
+          <div class="ng-hide" role="alert">
+            <strong>Opps!</strong> You have already tried that.
           </div>
         </div>
       </div>

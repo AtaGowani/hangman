@@ -35,7 +35,8 @@
                 Please enter <strong>one</strong> letter at a time.
               </p>
             </div>
-            <button class="btn btn-primary" type="submit">ENTER</button>
+            <button ng-hide="!gameVariables.incorrectGuessesAllowed" class="btn btn-primary" type="submit">ENTER</button>
+            <button ng-show="!gameVariables.incorrectGuessesAllowed" class="btn btn-warning" ng-click="newGame()">New Game!</button>
           </form>
 
         </div>

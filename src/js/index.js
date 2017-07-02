@@ -40,4 +40,15 @@ app.controller('GameController', ['$scope', '$log', function($scope, $log){
       $log.warn('Input not validated')
     }
   }
+
+  $scope.newGame = function() {
+
+    selectedWord = game.selectWord(words)
+    $log.info('Word:' + selectedWord)
+
+    $scope.gameVariables.incorrectGuessesAllowed = selectedWord.length
+    $scope.gameVariables.displayWord = game.convertToSecret(selectedWord)
+    $scope.gameVariables.incorrectGuesses = [];
+    document.getElementsByTagName("input")[0].removeAttribute("disabled");
+  }
 }])

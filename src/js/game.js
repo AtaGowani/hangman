@@ -27,6 +27,16 @@ game.check = function(userGuess, correctWord) {
   return false
 }
 
+game.checkDuplicate = function (userGuess, allGuesses) {
+  var duplicate = false
+  for(var i = 0; i < allGuesses.length; i++){
+    if(allGuesses[i] === userGuess){
+      duplicate = true
+    }
+  }
+  return duplicate
+}
+
 //function to reveal letters that have matched
 game.reveal = function(userGuess, gameVariables, correctWord) {
   var hold = gameVariables.displayWord.replace(/ /g,'') //removes all spaces before storing

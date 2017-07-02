@@ -20,15 +20,24 @@ app.controller('GameController', ['$scope', '$log', function($scope, $log){
 
   $scope.checkInput = function(valid){
     if(valid){
+      document.getElementsByTagName("div")[5].className = "ng-hide"
       var userInput = $scope.guess
       $scope.guess = '' //clear the input field for the user
 
       var correct = game.check(userInput, selectedWord)
-      if(correct){
+      var duplicate = game.checkDuplicate(userInput, allGuesses)
+
+      if(correct && !duplicate){
         game.reveal(userInput, $scope.gameVariables, selectedWord)
+        allGuesses += userInput
+      }
+      else if(duplicate){
+        $log.info("Duplicate detected")
+        document.getElementsByTagName("div")[5].className = "ng-show alert alert-warning"
       }
       else{
         $scope.gameVariables.incorrectGuesses += userInput
+        allGuesses += userInput
         $scope.gameVariables.incorrectGuessesAllowed -= 1
 
         if (!$scope.gameVariables.incorrectGuessesAllowed){

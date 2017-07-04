@@ -65,6 +65,7 @@ app.controller('GameController', ['$scope', '$log', function($scope, $log){
     $scope.gameVariables.incorrectGuessesAllowed = selectedWord.length + 2
     $scope.gameVariables.displayWord = game.convertToSecret(selectedWord)
     $scope.gameVariables.incorrectGuesses = []
+    $scope.gameVariables.userWinStatus = false
     allGuesses = []
     document.getElementsByTagName("input")[0].removeAttribute("disabled")
   }

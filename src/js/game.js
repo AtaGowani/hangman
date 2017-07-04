@@ -1,13 +1,13 @@
 var game = {}
 var errorObj
 
-// function to select a word randomly
+// Function to select a word randomly
 game.selectWord = function(randomWords){
   var index = Math.round(Math.random() * (randomWords.length - 1))
   return randomWords[index]
 }
 
-// function to convert word into a secret with '_'
+// Function to convert word into a secret with '_'
 game.convertToSecret = function (word){
   var secretWord = ''
   for (var i = 0; i < word.length; i++){
@@ -16,7 +16,7 @@ game.convertToSecret = function (word){
     return secretWord
 }
 
-// function to check if the guess is correct
+// Function to check if the guess is correct
 game.check = function(userGuess, correctWord) {
   //goes through each letter and sees if any match the input
   for(var i = 0; i < correctWord.length; i++){
@@ -37,9 +37,10 @@ game.checkDuplicate = function (userGuess, allGuesses) {
   return duplicate
 }
 
-//function to reveal letters that have matched
-game.reveal = function(userGuess, gameVariables, correctWord) {
-  var hold = gameVariables.displayWord.replace(/ /g,'') //removes all spaces before storing
+// Function to reveal letters that have matched
+game.revealLetter = function(userGuess, gameVariables, correctWord) {
+  // Removes all spaces before storing
+  var hold = gameVariables.displayWord.replace(/ /g,'')
   gameVariables.displayWord = ''
 
   for(var i = 0; i < correctWord.length; i++){
@@ -50,4 +51,16 @@ game.reveal = function(userGuess, gameVariables, correctWord) {
       gameVariables.displayWord += hold[i] + ' '
     }
   }
+}
+
+// Function to check is the user has already guess all the letters
+game.checkForWin = function(displayWord){
+  var userWinStatus = true
+
+  for(var i=0; i < displayWord.length; i++){
+    if(displayWord[i] === '_'){
+      userWinStatus = false
+    }
+  }
+  return userWinStatus
 }

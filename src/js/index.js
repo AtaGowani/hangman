@@ -2,12 +2,13 @@ var app = angular.module('HangmanApp', []);
 
 app.controller('GameController', ['$scope', '$log', function($scope, $log){
 
-  var words = ['Cow', 'Goat', 'Boat', 'Float' , 'Lion', 'Tiger', 'Math', 'Trello', 'Chello', 'Hello']
+  var words = ['Lion', 'Goat', 'Fish', 'Rat' , 'Cow', 'Dog', 'Elephant', 'Wolf', 'Panda', 'Lizard', 'Frog', 'Turtle', 'Zebra', 'Snail', 'Monkey', 'Gorilla', 'Camel', 'Bird', 'Crocodile', 'Owl', 'Duck', 'Butterfly', 'Whale', 'Shark', 'Aligator', 'Horse', 'Rabbit', 'Snake', 'Bear', 'Cheetah', 'Koala', 'Human', 'Kitten', 'Squid', 'Mouse']
   var allGuesses = []
 
   $scope.gameVariables = {
     incorrectGuesses: [],
-    displayWord: ''
+    displayWord: '',
+    userWinStatus: false
   }
 
   //store the selected word into variable 
@@ -28,8 +29,14 @@ app.controller('GameController', ['$scope', '$log', function($scope, $log){
       var duplicate = game.checkDuplicate(userInput, allGuesses)
 
       if(correct && !duplicate){
-        game.reveal(userInput, $scope.gameVariables, selectedWord)
+        game.revealLetter(userInput, $scope.gameVariables, selectedWord)
         allGuesses += userInput
+
+        $scope.gameVariables.userWinStatus = game.checkForWin($scope.gameVariables.displayWord)
+
+        if($scope.gameVariables.userWinStatus){
+          document.getElementsByTagName("input")[0].setAttribute("disabled","")
+        }
       }
       else if(duplicate){
         $log.info("Duplicate detected")
@@ -41,7 +48,7 @@ app.controller('GameController', ['$scope', '$log', function($scope, $log){
         $scope.gameVariables.incorrectGuessesAllowed -= 1
 
         if (!$scope.gameVariables.incorrectGuessesAllowed){
-          document.getElementsByTagName("input")[0].setAttribute("disabled","");
+          document.getElementsByTagName("input")[0].setAttribute("disabled","")
         }
       }
     }
@@ -57,7 +64,8 @@ app.controller('GameController', ['$scope', '$log', function($scope, $log){
 
     $scope.gameVariables.incorrectGuessesAllowed = selectedWord.length + 2
     $scope.gameVariables.displayWord = game.convertToSecret(selectedWord)
-    $scope.gameVariables.incorrectGuesses = [];
-    document.getElementsByTagName("input")[0].removeAttribute("disabled");
+    $scope.gameVariables.incorrectGuesses = []
+    allGuesses = []
+    document.getElementsByTagName("input")[0].removeAttribute("disabled")
   }
 }])

@@ -3,8 +3,10 @@
   <head> 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="src/css/style.css">
+    
     <title>Hangman Game</title>
   </head>
   <body ng-controller="GameController">
@@ -19,11 +21,14 @@
           <div>
             <p ng-show="gameVariables.incorrectGuessesAllowed" ng-cloak>Incorrect Guesses Left: {{gameVariables.incorrectGuessesAllowed}}</p>
           </div>
-          <div class="alert alert-danger" ng-show="!gameVariables.incorrectGuessesAllowed" ng-cloak role="alert">
+          <div class="alert alert-danger" ng-show="!gameVariables.incorrectGuessesAllowed" role="alert" ng-cloak>
             <strong>Oh snap!</strong> Looks like you lost.
           </div>
           <div class="ng-hide" role="alert">
             <strong>Opps!</strong> You have already tried that.
+          </div>
+          <div class="ng-hide alert alert-success" role="alert" ng-show="gameVariables.userWinStatus">
+            <strong>Yayy!!</strong> You won.
           </div>
         </div>
       </div>
@@ -38,8 +43,8 @@
                 Please enter <strong>one</strong> letter at a time.
               </p>
             </div>
-            <button ng-hide="!gameVariables.incorrectGuessesAllowed" class="btn btn-primary" type="submit">ENTER</button>
-            <button ng-show="!gameVariables.incorrectGuessesAllowed" class="btn btn-warning" ng-click="newGame()" ng-cloak>New Game!</button>
+            <button ng-hide="!gameVariables.incorrectGuessesAllowed || gameVariables.userWinStatus" class="btn btn-primary" type="submit">ENTER</button>
+            <button ng-show="!gameVariables.incorrectGuessesAllowed || gameVariables.userWinStatus" class="btn btn-warning" ng-click="newGame()" ng-cloak>New Game!</button>
           </form>
 
         </div>
@@ -61,7 +66,7 @@
     <!-- Load AngularJS -->
     <script src="bower_components/angular/angular.min.js"></script>
 
-    <!-- first game.js then index.js -->
+    <!-- First game.js, then index.js -->
     <script src="src/js/game.js"></script>
     <script src="src/js/index.js"></script>
   </body>

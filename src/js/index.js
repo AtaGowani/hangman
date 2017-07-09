@@ -1,23 +1,15 @@
 var app = angular.module('HangmanApp', []);
 
-app.controller('GameController', ['$scope', '$log', function($scope, $log){
+app.controller('GameController', ['$scope', '$log', '$http', function($scope, $log, $http){
 
-  var words = ['Lion', 'Goat', 'Fish', 'Rat' , 'Cow', 'Dog', 'Elephant', 'Wolf', 'Panda', 'Lizard', 'Frog', 'Turtle', 'Zebra', 'Snail', 'Monkey', 'Gorilla', 'Camel', 'Bird', 'Crocodile', 'Owl', 'Duck', 'Butterfly', 'Whale', 'Shark', 'Aligator', 'Horse', 'Rabbit', 'Snake', 'Bear', 'Cheetah', 'Koala', 'Human', 'Kitten', 'Squid', 'Mouse']
   var allGuesses = []
+  var selectedWord = ''
 
   $scope.gameVariables = {
     incorrectGuesses: [],
     displayWord: '',
     userWinStatus: false
   }
-
-  //store the selected word into variable 
-  var selectedWord = game.selectWord(words)
-  $log.info('Word:' + selectedWord)
-
-  $scope.gameVariables.incorrectGuessesAllowed = selectedWord.length + 2
-
-  $scope.gameVariables.displayWord = game.convertToSecret(selectedWord)
 
   $scope.checkInput = function(valid){
     if(valid){
@@ -59,14 +51,21 @@ app.controller('GameController', ['$scope', '$log', function($scope, $log){
 
   $scope.newGame = function() {
 
-    selectedWord = game.selectWord(words)
-    $log.info('Word:' + selectedWord)
-
-    $scope.gameVariables.incorrectGuessesAllowed = selectedWord.length + 2
-    $scope.gameVariables.displayWord = game.convertToSecret(selectedWord)
-    $scope.gameVariables.incorrectGuesses = []
-    $scope.gameVariables.userWinStatus = false
-    allGuesses = []
-    document.getElementsByTagName("input")[0].removeAttribute("disabled")
+    // API call to get a random word
+    $http({
+      method: 'GET',
+      url: 'http://api.wordnik.com/v4/words.json/randomWord?hasDictionaryDef=true&minCorpusCount=0&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=-1&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5'
+    }).then(function successCallback(wordObject) {
+      selectedWord = wordObject.data.word
+      $log.info('Word:' + selectedWord)
+      $scope.gameVariables.incorrectGuessesAllowed = selectedWord.length + 2
+      $scope.gameVariables.displayWord = game.convertToSecret(selectedWord)
+      $scope.gameVariables.incorrectGuesses = []
+      $scope.gameVariables.userWinStatus = false
+      allGuesses = []
+      document.getElementsByTagName("input")[0].removeAttribute("disabled")
+    }, function errorCallback(response) {
+      $log.warn('Unable to get API, returned ' + response)
+    })
   }
 }])

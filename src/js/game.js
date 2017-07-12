@@ -7,11 +7,11 @@ game.selectWord = function(randomWords){
   return randomWords[index]
 }
 
-// Function to convert word into a secret with '_'
+// Function to convert word into a secret with '*'
 game.convertToSecret = function (word){
   var secretWord = ''
   for (var i = 0; i < word.length; i++){
-    secretWord += '_ '
+    secretWord += '*'
   }
     return secretWord
 }
@@ -45,10 +45,10 @@ game.revealLetter = function(userGuess, gameVariables, correctWord) {
 
   for(var i = 0; i < correctWord.length; i++){
     if(userGuess.toLowerCase() == correctWord[i].toLowerCase()){
-      gameVariables.displayWord += correctWord[i] + ' '
+      gameVariables.displayWord += correctWord[i]
     }
     else{
-      gameVariables.displayWord += hold[i] + ' '
+      gameVariables.displayWord += hold[i]
     }
   }
 }
@@ -58,7 +58,7 @@ game.checkForWin = function(displayWord){
   var userWinStatus = true
 
   for(var i=0; i < displayWord.length; i++){
-    if(displayWord[i] === '_'){
+    if(displayWord[i] === '*'){
       userWinStatus = false
     }
   }

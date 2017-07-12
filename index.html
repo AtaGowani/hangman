@@ -39,6 +39,7 @@
             <div class="form-group" ng-class="{'has-warning' : userInput.letter.$error.maxlength}">
               <label for="userGuess" class="sr-only">Enter Letter</label> <!-- for screen readers -->
               <input type="text" name="letter" id="userGuess" placeholder="your guess" id="userInput" class="form-control" ng-trim="true" ng-model="guess" ng-maxlength="1" ng-class="{'form-control-warning' : userInput.letter.$error.maxlength}" required>
+              <input type="image" src="src/imgs/bulb.png" height="40"></input>
               <p ng-if="userInput.letter.$error.maxlength" class="form-control-feedback" ng-cloak>
                 Please enter <strong>one</strong> letter at a time.
               </p>

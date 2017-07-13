@@ -12,6 +12,7 @@ app.controller('GameController', ['$scope', '$log', '$http', function($scope, $l
   }
 
   $scope.checkInput = function(valid){
+    console.log('Input Validating Function Called')
     if(valid){
       document.getElementsByTagName("div")[5].className = "ng-hide"
       var userInput = $scope.guess
@@ -68,4 +69,33 @@ app.controller('GameController', ['$scope', '$log', '$http', function($scope, $l
       $log.warn('Unable to get API, returned ' + response)
     })
   }
+
+  $scope.showHint = function() {
+    do{
+      var letterAlreadyGiven = false 
+      var randomIndex = Math.random() * (selectedWord.length - 1)
+      randomIndex = Math.round(randomIndex)
+      var randomLetter = selectedWord[randomIndex]
+      for (var i=0; !letterAlreadyGiven && i < $scope.gameVariables.displayWord.length; i++) {
+        if (randomLetter == $scope.gameVariables.displayWord[i]) {
+          letterAlreadyGiven = true
+        }
+      }
+      if (!letterAlreadyGiven) {
+        console.log(randomLetter)
+      }
+    } while(letterAlreadyGiven)
+
+    var hold = $scope.gameVariables.displayWord
+    $scope.gameVariables.displayWord = ''
+
+    for(var i = 0; i < selectedWord.length; i++){
+        if(randomLetter === selectedWord[i]){
+          $scope.gameVariables.displayWord += randomLetter
+        }
+        else{
+          $scope.gameVariables.displayWord += hold[i]
+        }
+      }
+    }
 }])

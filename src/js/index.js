@@ -86,16 +86,7 @@ app.controller('GameController', ['$scope', '$log', '$http', function($scope, $l
       }
     } while(letterAlreadyGiven)
 
-    var hold = $scope.gameVariables.displayWord
-    $scope.gameVariables.displayWord = ''
-
-    for(var i = 0; i < selectedWord.length; i++){
-        if(randomLetter === selectedWord[i]){
-          $scope.gameVariables.displayWord += randomLetter
-        }
-        else{
-          $scope.gameVariables.displayWord += hold[i]
-        }
-      }
+    game.revealLetter(randomLetter, $scope.gameVariables, selectedWord)
+    
     }
 }])

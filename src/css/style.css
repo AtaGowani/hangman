@@ -12,3 +12,11 @@ body{
 .secret{
   font-size: 30px;
 }
+
+.disabled {
+  opacity: 0.4;
+}
+
+input:focus {
+  outline: 0;
+}

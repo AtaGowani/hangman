@@ -46,6 +46,9 @@
             <button ng-hide="!gameVariables.incorrectGuessesAllowed || gameVariables.userWinStatus" class="btn btn-primary" type="submit">ENTER</button>
             <button ng-show="!gameVariables.incorrectGuessesAllowed || gameVariables.userWinStatus" class="btn btn-warning" ng-click="newGame()" ng-cloak>New Game!</button>
           </form>
+          <form>
+            <input type="image" src="src/imgs/bulb.png" height="40" ng-click="showHint()"></input>
+          </form>
 
         </div>
       </div>

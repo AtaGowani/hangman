@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/AtaGowani/hangman_game/issues"
   },
-  "homepage": "https://github.com/AtaGowani/hangman_game#readme"
+  "homepage": "https://github.com/AtaGowani/hangman_game#readme",
+  "devDependencies": {
+    "bootstrap": "^4.0.0-alpha.6",
+    "bower": "^1.8.0",
+    "webpack": "^3.2.0"
+  }
 }

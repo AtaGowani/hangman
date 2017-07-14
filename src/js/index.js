@@ -92,6 +92,7 @@ app.controller('GameController', ['$scope', '$log', '$http', function($scope, $l
       } while(letterAlreadyGiven)
 
       game.revealLetter(randomLetter, $scope.gameVariables, selectedWord)
+      allGuesses += randomLetter
       $scope.gameVariables.hintsLeft -= 1
 
       $scope.gameVariables.userWinStatus = game.checkForWin($scope.gameVariables.displayWord)

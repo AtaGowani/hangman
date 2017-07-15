@@ -1,4 +1,9 @@
-var app = angular.module('HangmanApp', []);
+'use strict'
+
+import Game from './app'
+
+var app = angular.module('HangmanApp', [])
+var game = new Game()
 
 app.controller('GameController', ['$scope', '$log', '$http', function($scope, $log, $http){
 

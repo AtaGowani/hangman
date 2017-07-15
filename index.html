@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="src/css/style.css">
     
     <title>Hangman Game</title>
@@ -61,16 +61,9 @@
       </div>
     </div>
 
-    <!-- jQuery first, then Tether, then Bootstrap JS. -->
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="bower_components/tether/dist/js/tether.min.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Load AngularJS and Bootstrap (Tether and jQuery) -->
+    <script src="dist/js/vendor.js"></script>
 
-    <!-- Load AngularJS -->
-    <script src="bower_components/angular/angular.min.js"></script>
-
-    <!-- First game.js, then index.js -->
-    <script src="src/js/game.js"></script>
-    <script src="src/js/index.js"></script>
+    <script src="dist/js/controller.js"></script>
   </body>
 </html>

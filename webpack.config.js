@@ -1,4 +1,5 @@
 const webpack = require('webpack')
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -21,6 +22,6 @@ module.exports = {
   watch: true,
 
   plugins: [
-    new webpack.optimize.UglifyJsPlugin()
+    new UglifyJSPlugin()
   ]
 }

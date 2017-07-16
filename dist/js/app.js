@@ -363,3 +363,4 @@
             } else document.getElementsByTagName("input")[1].classList.add("disabled");
         };
     } ]);
+} ]);

@@ -32,7 +32,7 @@ export default class Game {
   checkDuplicate (userGuess, allGuesses) {
     var duplicate = false
     for(var i = 0; i < allGuesses.length; i++){
-      if(allGuesses[i].toLowerCase === userGuess.toLowerCase){
+      if(allGuesses[i].toLowerCase() === userGuess.toLowerCase()){
         duplicate = true
       }
     }

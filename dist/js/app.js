@@ -70,7 +70,7 @@
         }, {
             key: "checkDuplicate",
             value: function(t, e) {
-                for (var o = !1, r = 0; r < e.length; r++) e[r].toLowerCase === t.toLowerCase && (o = !0);
+                for (var o = !1, r = 0; r < e.length; r++) e[r].toLowerCase() === t.toLowerCase() && (o = !0);
                 return o;
             }
         }, {

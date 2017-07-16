@@ -1,3 +1,6 @@
+require ('../css/style.css')
+require ('../../node_modules/bootstrap/dist/css/bootstrap.min.css')
+
 export default class Game {
 
   // Function to select a word randomly

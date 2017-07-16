@@ -1,4 +1,9 @@
-var app = angular.module('HangmanApp', []);
+'use strict'
+
+import Game from './app'
+
+var app = angular.module('HangmanApp', [])
+var game = new Game()
 
 app.controller('GameController', ['$scope', '$log', '$http', function($scope, $log, $http){
 
@@ -12,7 +17,7 @@ app.controller('GameController', ['$scope', '$log', '$http', function($scope, $l
     hintsLeft: 0
   }
 
-  $scope.checkInput = function(valid){
+  $scope.checkInput = (valid) => {
     console.log('Input Validating Function Called')
     if(valid){
       document.getElementsByTagName('div')[5].className = 'ng-hide'
@@ -52,7 +57,7 @@ app.controller('GameController', ['$scope', '$log', '$http', function($scope, $l
     }
   }
 
-  $scope.newGame = function() {
+  $scope.newGame = () => {
 
     // API call to get a random word
     $http({
@@ -74,7 +79,7 @@ app.controller('GameController', ['$scope', '$log', '$http', function($scope, $l
     })
   }
 
-  $scope.showHint = function() {
+  $scope.showHint = () => {
     if (!$scope.gameVariables.userWinStatus && $scope.gameVariables.hintsLeft) {
       do{
         var letterAlreadyGiven = false 
@@ -108,5 +113,5 @@ app.controller('GameController', ['$scope', '$log', '$http', function($scope, $l
     else {
       document.getElementsByTagName('input')[1].classList.add('disabled')
     }
-    }
+  }
 }])

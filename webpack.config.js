@@ -3,9 +3,8 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   entry: {
-    app: ['./src/js/app.js'],
-    vendor: ['./src/js/vendor.js'],
-    controller: ['./src/js/game.controller.js']
+    app: ['./src/js/app.js', './src/js/game.controller.js'],
+    vendor: ['./src/js/vendor.js']
   },
 
   output: {
@@ -15,13 +14,22 @@ module.exports = {
 
   module: {
     rules: [
-      { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" }
+      { test: /\.js$/,
+        exclude: /node_modules/,
+        loader: "babel-loader"
+      }
     ]
   },
 
   watch: true,
 
   plugins: [
-    new UglifyJSPlugin()
+    new UglifyJSPlugin({
+      mangle: {
+        // Skip mangling these 
+        except: ['game']
+      },
+      beautify: true
+    })
   ]
 }

@@ -18,7 +18,7 @@ This project uses **Webpack** as a build tool.
 
 If you make changes to the files (CSS and JS) in `src`, these changes won't be visible until you run `npm run build` which will call Webpack and build the changes in the `dist` folder.
 
-See something that can be improved? Create an [Issue](https://github.com/AtaGowani/hangman/issues/new).
+**See something that can be improved?** Create an [Issue](https://github.com/AtaGowani/hangman/issues/new).
 
 ## License ##
 

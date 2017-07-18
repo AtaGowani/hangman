@@ -2,6 +2,10 @@
 
 <!-- Describe the issue -->
 
+## Screenshots
+
+<!-- Add if applicable -->
+
 # Possible Fix
 
 <!-- Propose a fix for the issue -->

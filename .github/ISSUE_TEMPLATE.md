@@ -2,14 +2,10 @@
 
 <!-- Describe the issue -->
 
-# Now:
+# Possible Fix
 
-<!-- State or insert a picture of what the current state of the issue is -->
-
-# After:
-
-<!-- Describe what it should look like after the change -->
+<!-- Propose a fix for the issue -->
 
 # Additional Details
 
-<!-- Include any other details you feel are needed -->
+<!-- Include any other details you feel are needed, write "None" otherwise -->

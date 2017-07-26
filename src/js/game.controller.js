@@ -62,7 +62,7 @@ app.controller('GameController', ['$scope', '$log', '$http', function($scope, $l
     // API call to get a random word
     $http({
       method: 'GET',
-      url: 'http://api.wordnik.com/v4/words.json/randomWord?hasDictionaryDef=true&minCorpusCount=0&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=-1&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5'
+      url: 'https://api.wordnik.com/v4/words.json/randomWord?hasDictionaryDef=true&minCorpusCount=0&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=-1&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5'
     }).then(function successCallback(wordObject) {
       selectedWord = wordObject.data.word
       $log.info('Word:' + selectedWord)

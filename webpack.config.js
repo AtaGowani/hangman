@@ -24,16 +24,13 @@ module.exports = {
       }
     ]
   },
-
-  watch: true,
-
+  
   plugins: [
     new UglifyJSPlugin({
       mangle: {
         // Skip mangling these 
         except: ['game']
-      },
-      beautify: true
+      }
     })
   ]
 }

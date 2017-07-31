@@ -49,6 +49,7 @@ app.controller('GameController', ['$scope', '$log', '$http', function($scope, $l
         $scope.gameVariables.incorrectGuessesAllowed -= 1
 
         if (!$scope.gameVariables.incorrectGuessesAllowed){
+          document.getElementsByTagName('input')[1].classList.add('disabled')
           document.getElementsByTagName('input')[0].setAttribute('disabled','')
         }
       }

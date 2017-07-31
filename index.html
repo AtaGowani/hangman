@@ -2,15 +2,13 @@
 <html ng-app="HangmanApp">
   <head> 
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hangman Game</title>
+
     <!-- Load AngularJS and Bootstrap (Tether and jQuery) -->
     <script src="dist/js/vendor.js"></script>
-
     <!-- Load the game -->
     <script src="dist/js/app.js"></script>
-
-    <title>Hangman Game</title>
   </head>
   <body ng-controller="GameController" ng-init="newGame()">
     <div class="loading-page" ng-show="!gameVariables.loaded">
@@ -33,9 +31,7 @@
         <div class="col-12 text-center">
           <h1 class="display-3">Hangman Game</h1>
           <p class="lead">Guess the word!</p>
-          
           <p class="secret lead" ng-cloak>{{gameVariables.displayWord}}</p>
-
           <div>
             <p ng-show="gameVariables.incorrectGuessesAllowed" ng-cloak>Incorrect Guesses Left: {{gameVariables.incorrectGuessesAllowed}}</p>
           </div>
@@ -52,7 +48,6 @@
       </div>
       <div class="row input">
         <div class="col-12 text-center">
-          
           <form autocomplete="off" name="userInput" ng-submit="checkInput(userInput.$valid)">
             <div class="form-group" ng-class="{'has-warning' : userInput.letter.$error.maxlength}">
               <label for="userGuess" class="sr-only">Enter Letter</label> <!-- for screen readers -->
@@ -77,6 +72,5 @@
         </div>
       </div>
     </div>
-
   </body>
 </html>

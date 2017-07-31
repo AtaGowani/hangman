@@ -2,8 +2,71 @@
   padding-top: 9rem;
 }
 
+@media (max-width: 450px) {
+  .container {
+    padding-top: 3rem;
+  }
+}
+
 .loading-page .container {
   padding-top: 19rem;
+}
+
+@media (min-height: 900px) {
+  .loading-page .container {
+    padding-top: 27rem;
+  }
+}
+
+@media (min-height: 1000px) {
+  .loading-page .container {
+    padding-top: 30rem;
+  }
+}
+
+@media (max-height: 600px) {
+  .loading-page .container {
+    padding-top: 16.5rem;
+  }
+}
+
+@media (max-height: 500px) {
+  .loading-page .container {
+    padding-top: 14.5rem;
+  }
+}
+
+@media (max-height: 390px) {
+  .loading-page .container {
+    padding-top: 17rem;
+  }
+}
+
+@media (max-height: 450px) {
+  .loading-page .container {
+    padding-top: 12rem; 
+  }
+  .container {
+    padding-top: 2rem;
+  }
+}
+
+@media (max-height: 400px) {
+  .loading-page .container {
+    padding-top: 11rem; 
+  }
+  .container {
+    padding-top: 2rem;
+  }
+}
+
+@media (max-height: 350px) {
+  .loading-page .container {
+    padding-top: 9rem; 
+  }
+  .container {
+    padding-top: 2rem;
+  }
 }
 
 .input{

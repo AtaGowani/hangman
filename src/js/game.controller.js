@@ -7,20 +7,21 @@ var game = new Game()
 
 app.controller('GameController', ['$scope', '$log', '$http', function($scope, $log, $http){
 
-  var allGuesses = []
-  var selectedWord = ''
+  var allGuesses = [],
+      selectedWord = ''
 
   $scope.gameVariables = {
     incorrectGuesses: [],
     displayWord: '',
     userWinStatus: false,
-    hintsLeft: 0
+    hintsLeft: 0,
+    loaded: false
   }
 
   $scope.checkInput = (valid) => {
     console.log('Input Validating Function Called')
     if(valid){
-      document.getElementsByTagName('div')[5].className = 'ng-hide'
+      document.getElementsByTagName('div')[11].className = 'ng-hide'
       var userInput = $scope.guess
       $scope.guess = '' //clear the input field for the user
 
@@ -40,7 +41,7 @@ app.controller('GameController', ['$scope', '$log', '$http', function($scope, $l
       }
       else if(duplicate){
         $log.info('Duplicate detected')
-        document.getElementsByTagName('div')[5].className = 'ng-show alert alert-warning'
+        document.getElementsByTagName('div')[11].className = 'ng-show alert alert-warning'
       }
       else{
         $scope.gameVariables.incorrectGuesses += userInput
@@ -48,6 +49,7 @@ app.controller('GameController', ['$scope', '$log', '$http', function($scope, $l
         $scope.gameVariables.incorrectGuessesAllowed -= 1
 
         if (!$scope.gameVariables.incorrectGuessesAllowed){
+          document.getElementsByTagName('input')[1].classList.add('disabled')
           document.getElementsByTagName('input')[0].setAttribute('disabled','')
         }
       }
@@ -58,6 +60,7 @@ app.controller('GameController', ['$scope', '$log', '$http', function($scope, $l
   }
 
   $scope.newGame = () => {
+    $scope.gameVariables.loaded = false;
 
     // API call to get a random word
     $http({
@@ -74,6 +77,7 @@ app.controller('GameController', ['$scope', '$log', '$http', function($scope, $l
       allGuesses = []
       document.getElementsByTagName('input')[0].removeAttribute('disabled')
       document.getElementsByTagName('input')[1].classList.remove('disabled')
+      $scope.gameVariables.loaded = true
     }, function errorCallback(response) {
       $log.warn('Unable to get API, returned ' + response)
     })

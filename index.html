@@ -4,10 +4,31 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+    <!-- Load AngularJS and Bootstrap (Tether and jQuery) -->
+    <script src="dist/js/vendor.js"></script>
+
+    <!-- Load the game -->
+    <script src="dist/js/app.js"></script>
+
     <title>Hangman Game</title>
   </head>
   <body ng-controller="GameController" ng-init="newGame()">
-    <div class="container">
+    <div class="loading-page" ng-show="!gameVariables.loaded">
+      <div class="container">
+        <div class="row text-center">
+          <div class="col-12">
+            <div class="loader">
+              <div class="bubbles">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container loaded">
       <div class="row">
         <div class="col-12 text-center">
           <h1 class="display-3">Hangman Game</h1>
@@ -35,7 +56,7 @@
           <form autocomplete="off" name="userInput" ng-submit="checkInput(userInput.$valid)">
             <div class="form-group" ng-class="{'has-warning' : userInput.letter.$error.maxlength}">
               <label for="userGuess" class="sr-only">Enter Letter</label> <!-- for screen readers -->
-              <input type="text" name="letter" id="userGuess" placeholder="your guess" id="userInput" class="form-control" ng-trim="true" ng-model="guess" ng-maxlength="1" ng-class="{'form-control-warning' : userInput.letter.$error.maxlength}" required>
+              <input type="text" name="letter" id="userGuess" placeholder="enter a letter" id="userInput" class="form-control" ng-trim="true" ng-model="guess" ng-maxlength="1" ng-class="{'form-control-warning' : userInput.letter.$error.maxlength}" required>
               <p ng-if="userInput.letter.$error.maxlength" class="form-control-feedback" ng-cloak>
                 Please enter <strong>one</strong> letter at a time.
               </p>
@@ -44,9 +65,8 @@
             <button ng-show="!gameVariables.incorrectGuessesAllowed || gameVariables.userWinStatus" class="btn btn-warning" ng-click="newGame()" ng-cloak>New Game!</button>
           </form>
           <form>
-            <input type="image" src="src/imgs/bulb.png" height="40" ng-click="showHint()"></input>
+            <input type="image" src="src/imgs/bulb.png" height="40" ng-click="showHint()">
           </form>
-
         </div>
       </div>
       <div class="row">
@@ -58,10 +78,5 @@
       </div>
     </div>
 
-    <!-- Load AngularJS and Bootstrap (Tether and jQuery) -->
-    <script src="dist/js/vendor.js"></script>
-
-    <!-- Load the game -->
-    <script src="dist/js/app.js"></script>
   </body>
 </html>

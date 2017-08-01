@@ -51,17 +51,20 @@
           <form autocomplete="off" name="userInput" ng-submit="checkInput(userInput.$valid)">
             <div class="form-group" ng-class="{'has-warning' : userInput.letter.$error.maxlength}">
               <label for="userGuess" class="sr-only">Enter Letter</label> <!-- for screen readers -->
-              <input type="text" name="letter" id="userGuess" placeholder="enter a letter" id="userInput" class="form-control" ng-trim="true" ng-model="guess" ng-maxlength="1" ng-class="{'form-control-warning' : userInput.letter.$error.maxlength}" required>
+              <input ng-touched="true" type="text" name="letter" id="letter" placeholder="enter a letter" class="form-control" ng-trim="true" ng-model="guess" ng-maxlength="1" ng-required="true" ng-class="{'form-control-warning' : userInput.letter.$error.maxlength}">
               <p ng-if="userInput.letter.$error.maxlength" class="form-control-feedback" ng-cloak>
                 Please enter <strong>one</strong> letter at a time.
               </p>
             </div>
-            <button ng-hide="!gameVariables.incorrectGuessesAllowed || gameVariables.userWinStatus" class="btn btn-primary" type="submit">ENTER</button>
-            <button ng-show="!gameVariables.incorrectGuessesAllowed || gameVariables.userWinStatus" class="btn btn-warning" ng-click="newGame()" ng-cloak>New Game!</button>
           </form>
-          <form>
-            <input type="image" src="src/imgs/bulb.png" height="40" ng-click="showHint()">
-          </form>
+          <div class="row text-center">
+            <div class="col-12">
+              <input type="image" src="src/imgs/bulb.png" height="40" ng-click="showHint()">
+            </div>
+            <div class="col-12">
+              <button ng-show="!gameVariables.incorrectGuessesAllowed || gameVariables.userWinStatus" class="btn btn-warning" ng-click="newGame()" ng-cloak>New Game!</button>
+            </div>
+          </div>  
         </div>
       </div>
       <div class="row">

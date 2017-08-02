@@ -1,5 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC|BenchNine');
+
+body h1.display-3{
+  font-family: 'Amatic SC', cursive;
+  font-size: 5.5rem;
+}
+
+p.lead {
+  font-family: 'BenchNine', sans-serif;
+  font-size: 1.8rem;
+}
+
 .container {
-  padding-top: 9rem;
+  padding-top: 8rem;
 }
 
 @media (max-width: 450px) {

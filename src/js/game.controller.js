@@ -21,7 +21,7 @@ app.controller('GameController', ['$scope', '$log', '$http', function($scope, $l
   $scope.checkInput = (valid) => {
     console.log('Input Validating Function Called')
     if(valid){
-      document.getElementsByTagName('div')[11].className = 'ng-hide'
+      document.getElementsByTagName('div')[12].className = 'ng-hide'
       var userInput = $scope.guess
       $scope.guess = '' //clear the input field for the user
 
@@ -42,7 +42,7 @@ app.controller('GameController', ['$scope', '$log', '$http', function($scope, $l
       }
       else if(duplicate){
         $log.info('Duplicate detected')
-        document.getElementsByTagName('div')[11].className = 'ng-show alert alert-warning'
+        document.getElementsByTagName('div')[12].className = 'ng-show alert alert-warning'
       }
       else{
         $scope.gameVariables.incorrectGuesses += userInput

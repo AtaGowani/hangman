@@ -37,6 +37,7 @@ app.controller('GameController', ['$scope', '$log', '$http', function($scope, $l
         if($scope.gameVariables.userWinStatus){
           document.getElementsByTagName('input')[0].setAttribute('disabled','')
           document.getElementsByTagName('input')[1].classList.add('disabled')
+          document.getElementsByTagName('input')[1].setAttribute('disabled','')
         }
       }
       else if(duplicate){
@@ -50,6 +51,7 @@ app.controller('GameController', ['$scope', '$log', '$http', function($scope, $l
 
         if (!$scope.gameVariables.incorrectGuessesAllowed){
           document.getElementsByTagName('input')[1].classList.add('disabled')
+          document.getElementsByTagName('input')[1].setAttribute('disabled','')
           document.getElementsByTagName('input')[0].setAttribute('disabled','')
         }
       }
@@ -76,6 +78,7 @@ app.controller('GameController', ['$scope', '$log', '$http', function($scope, $l
       $scope.gameVariables.hintsLeft = Math.ceil(selectedWord.length * 0.25)
       allGuesses = []
       document.getElementsByTagName('input')[0].removeAttribute('disabled')
+      document.getElementsByTagName('input')[1].removeAttribute('disabled')
       document.getElementsByTagName('input')[1].classList.remove('disabled')
       $scope.gameVariables.loaded = true
     }, function errorCallback(response) {
@@ -84,7 +87,6 @@ app.controller('GameController', ['$scope', '$log', '$http', function($scope, $l
   }
 
   $scope.showHint = () => {
-    if (!$scope.gameVariables.userWinStatus && $scope.gameVariables.hintsLeft) {
       do{
         var letterAlreadyGiven = false 
         var randomIndex = Math.random() * (selectedWord.length - 1)
@@ -95,10 +97,7 @@ app.controller('GameController', ['$scope', '$log', '$http', function($scope, $l
             letterAlreadyGiven = true
           }
         }
-        if (!letterAlreadyGiven) {
-          console.log(randomLetter)
-        }
-      } while(letterAlreadyGiven)
+       } while(letterAlreadyGiven)
 
       game.revealLetter(randomLetter, $scope.gameVariables, selectedWord)
       allGuesses += randomLetter
@@ -106,16 +105,11 @@ app.controller('GameController', ['$scope', '$log', '$http', function($scope, $l
 
       $scope.gameVariables.userWinStatus = game.checkForWin($scope.gameVariables.displayWord)
 
-      if($scope.gameVariables.userWinStatus || !$scope.gameVariables.hintsLeft){
-        if($scope.gameVariables.userWinStatus){
+      if($scope.gameVariables.userWinStatus || !$scope.gameVariables.hintsLeft) {
+        if($scope.gameVariables.userWinStatus) {
           document.getElementsByTagName('input')[0].setAttribute('disabled', '')
         }
         document.getElementsByTagName('input')[1].classList.add('disabled')
+        document.getElementsByTagName('input')[1].setAttribute('disabled', '')
       }
-
-      }
-    else {
-      document.getElementsByTagName('input')[1].classList.add('disabled')
-    }
-  }
-}])
+}}])

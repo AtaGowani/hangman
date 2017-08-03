@@ -1,5 +1,5 @@
-require ('../css/style.css')
 require ('../../node_modules/bootstrap/dist/css/bootstrap.min.css')
+require ('../css/style.css')
 
 export default class Game {
 

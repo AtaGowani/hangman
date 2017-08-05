@@ -54,6 +54,9 @@
               <p class="source">{{gameVariables.sourceAttribution}}</p>
             </div>
           </div>
+          <div ng-show="!gameVariables.wordDefinition && gameVariables.defineWord">
+            <p>Sorry, no definition was found &#9785;</p>
+          </div>
         </div>
       </div>
       <div class="row input">

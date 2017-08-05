@@ -51,6 +51,7 @@ app.controller('GameController', ['$scope', '$log', '$http', function($scope, $l
         $scope.gameVariables.incorrectGuessesAllowed -= 1
 
         if (!$scope.gameVariables.incorrectGuessesAllowed){
+          $scope.gameVariables.displayWord = selectedWord
           document.getElementsByTagName('input')[1].classList.add('disabled')
           document.getElementsByTagName('input')[1].setAttribute('disabled','')
           document.getElementsByTagName('input')[0].setAttribute('disabled','')
@@ -70,11 +71,17 @@ app.controller('GameController', ['$scope', '$log', '$http', function($scope, $l
       method: 'GET',
       url: 'http://api.wordnik.com:80/v4/word.json/' + selectedWord + '/definitions?limit=1&includeRelated=true&sourceDictionaries=all&useCanonical=true&includeTags=false&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5'
     }).then(function successCallback(wordObject) {
-      if (wordObject.data[0].text) {
+      console.log(wordObject)
+      if (wordObject.data[0]) {
         $scope.gameVariables.partOfSpeech = wordObject.data[0].partOfSpeech
         $scope.gameVariables.wordDefinition = wordObject.data[0].text
         $scope.gameVariables.sourceAttribution = wordObject.data[0].attributionText
         $scope.gameVariables.defineWord = true
+      }
+      else {
+        $scope.gameVariables.defineWord = true
+        $scope.gameVariables.wordDefinition = false
+        console.log('Definition is undefined')
       }
     }, function errorCallback(response) {
       $log.warn('Unable to get definition, returned ' + response)

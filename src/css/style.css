@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Amatic+SC|BenchNine');
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC|BenchNine|Open+Sans:300,400');
 
 h1 {
   font-family: 'Amatic SC', cursive;
@@ -261,6 +261,27 @@ input:focus {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.definition {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+}
+
+.definition .word {
+  font-family: 'BenchNine', sans-serif;
+}
+
+.definition .partOfSpeech {
+  font-size: 1rem;
+}
+
+.definition .source {
+  font-size: .7rem;
+}
+
+.definition .wordDefinition {
+  font-size: 1.2rem;
 }
 
 @-moz-keyframes bubbly {

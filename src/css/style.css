@@ -1,5 +1,91 @@
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC|BenchNine|Open+Sans:300,400');
+
+h1 {
+  font-family: 'Amatic SC', cursive;
+  font-size: 5.5rem;
+}
+
+p {
+  margin-bottom: .2rem;
+}
+
+.alert {
+  margin-bottom: .7rem;
+}
+
+div.alert {
+  font-size: 1.5rem;
+  padding: .5rem 0rem;
+}
+
+.alert-warning {
+  color: #90CAF9;
+  background: transparent;
+  border: none;
+}
+
+.alert-success {
+  color: #81C784;
+  background: transparent;
+  border: none;
+}
+
+.alert-danger {
+  color: #EF9A9A;
+  background: transparent;
+  border: none;
+}
+
+.btn-primary {
+  background: #CE93D8;
+  border-color: #CE93D8;
+  outline: #CE93D8;
+}
+
+.btn-primary:hover {
+  background: #CE93D8;
+  border-color: #CE93D8;
+  outline: #CE93D8;
+  opacity: 0.6;
+}
+
+body {
+  background: #9C27B0;
+  color: #fff;
+  font-family: 'BenchNine', sans-serif;
+  font-size: 1.8rem;
+}
+
+input.form-control,
+input.form-control:focus,
+.form-control:disabled {
+  color: #fff;
+  background: transparent;
+}
+
+.form-control:disabled {
+  opacity: 0.5;
+}
+
+input.form-control {
+  border-color: #E1BEE7;
+}
+
+input.form-control:focus {
+  border-color: #fff;
+}
+
+input.form-control.disabled {
+  background: transparent;
+  opacity: 0.5;
+}
+
+input.form-control::placeholder {
+  color: #fff;
+}
+
 .container {
-  padding-top: 9rem;
+  padding-top: 7rem;
 }
 
 @media (max-width: 450px) {
@@ -78,7 +164,7 @@
 }
 
 .disabled {
-  opacity: 0.4;
+  opacity: 0.3;
 }
 
 input:focus {
@@ -88,7 +174,7 @@ input:focus {
 .loading-page {
   position: fixed;
   top: 0;
-  background: #fff;
+  background: #9C27B0;
   z-index: 1000;
   height: 100%;
   width: 100%;
@@ -103,7 +189,7 @@ input:focus {
   -webkit-animation: bubbly 1s infinite; /* Safari 4+ */
   -moz-animation: bubbly 1s infinite; /* Fx 5+ */
   -o-animation: bubbly 1s infinite; /* Opera 12+ */
-  background: #f00;
+  background: #F3E5F5;
   border-radius: 100%;
 }
 
@@ -117,7 +203,7 @@ input:focus {
   -moz-animation: bubbly 1s infinite; /* Fx 5+ */
   -o-animation: bubbly 1s infinite; /* Opera 12+ */
   animation-delay: .2s;
-  background: #0f0;
+  background: #E1BEE7;
   border-radius: 100%;
 }
 
@@ -131,7 +217,7 @@ input:focus {
   -moz-animation: bubbly 1s infinite; /* Fx 5+ */
   -o-animation: bubbly 1s infinite; /* Opera 12+ */
   animation-delay: .4s;
-  background: #00f;
+  background: #CE93D8;
   border-radius: 100%;
 }
 
@@ -175,6 +261,27 @@ input:focus {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.definition {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+}
+
+.definition .word {
+  font-family: 'BenchNine', sans-serif;
+}
+
+.definition .partOfSpeech {
+  font-size: 1rem;
+}
+
+.definition .source {
+  font-size: .7rem;
+}
+
+.definition .wordDefinition {
+  font-size: 1.2rem;
 }
 
 @-moz-keyframes bubbly {

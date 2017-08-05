@@ -30,19 +30,32 @@
       <div class="row">
         <div class="col-12 text-center">
           <h1 class="display-3">Hangman Game</h1>
-          <p class="lead">Guess the word!</p>
-          <p class="secret lead" ng-cloak>{{gameVariables.displayWord}}</p>
+          <p class="lead" ng-hide="gameVariables.defineWord">Guess the word!</p>
+          <p class="secret lead" ng-hide="gameVariables.defineWord" ng-cloak>{{gameVariables.displayWord}}</p>
           <div>
-            <p ng-show="gameVariables.incorrectGuessesAllowed" ng-cloak>Incorrect Guesses Left: {{gameVariables.incorrectGuessesAllowed}}</p>
+            <p ng-show="gameVariables.incorrectGuessesAllowed && !gameVariables.userWinStatus" ng-cloak>Incorrect Guesses Left: {{gameVariables.incorrectGuessesAllowed}}</p>
           </div>
-          <div class="alert alert-danger" ng-show="!gameVariables.incorrectGuessesAllowed" role="alert" ng-cloak>
-            <strong>Oh snap!</strong> Looks like you lost.
+          <div ng-hide="gameVariables.defineWord">
+            <div class="alert alert-danger" ng-show="!gameVariables.incorrectGuessesAllowed" role="alert" ng-cloak>
+              <strong>Oh snap!</strong> Looks like you lost.
+            </div>
+            <div class="ng-hide" role="alert">
+              <strong>Opps!</strong> You have already tried that.
+            </div>
+            <div class="ng-hide alert alert-success" role="alert" ng-show="gameVariables.userWinStatus">
+              <strong>Yayy!!</strong> You won.
+            </div>
           </div>
-          <div class="ng-hide" role="alert">
-            <strong>Opps!</strong> You have already tried that.
+          <div ng-show="gameVariables.defineWord && gameVariables.wordDefinition">
+            <div class="definition">
+              <p class="word">{{gameVariables.displayWord}}</p>
+              <p class="partOfSpeech">{{gameVariables.partOfSpeech}}</p>
+              <p class="wordDefinition">{{gameVariables.wordDefinition}}</p>
+              <p class="source">{{gameVariables.sourceAttribution}}</p>
+            </div>
           </div>
-          <div class="ng-hide alert alert-success" role="alert" ng-show="gameVariables.userWinStatus">
-            <strong>Yayy!!</strong> You won.
+          <div ng-show="!gameVariables.wordDefinition && gameVariables.defineWord">
+            <p>Sorry, no definition was found &#9785;</p>
           </div>
         </div>
       </div>
@@ -51,17 +64,21 @@
           <form autocomplete="off" name="userInput" ng-submit="checkInput(userInput.$valid)">
             <div class="form-group" ng-class="{'has-warning' : userInput.letter.$error.maxlength}">
               <label for="userGuess" class="sr-only">Enter Letter</label> <!-- for screen readers -->
-              <input type="text" name="letter" id="userGuess" placeholder="enter a letter" id="userInput" class="form-control" ng-trim="true" ng-model="guess" ng-maxlength="1" ng-class="{'form-control-warning' : userInput.letter.$error.maxlength}" required>
+              <input ng-touched="true" type="text" name="letter" id="letter" placeholder="enter a letter" class="form-control" ng-trim="true" ng-model="guess" ng-maxlength="1" ng-required="true" ng-class="{'form-control-warning' : userInput.letter.$error.maxlength}">
               <p ng-if="userInput.letter.$error.maxlength" class="form-control-feedback" ng-cloak>
                 Please enter <strong>one</strong> letter at a time.
               </p>
             </div>
-            <button ng-hide="!gameVariables.incorrectGuessesAllowed || gameVariables.userWinStatus" class="btn btn-primary" type="submit">ENTER</button>
-            <button ng-show="!gameVariables.incorrectGuessesAllowed || gameVariables.userWinStatus" class="btn btn-warning" ng-click="newGame()" ng-cloak>New Game!</button>
           </form>
-          <form>
-            <input type="image" src="src/imgs/bulb.png" height="40" ng-click="showHint()">
-          </form>
+          <div class="row text-center">
+            <div class="col-12">
+              <input type="image" src="src/imgs/bulb.png" height="40" ng-click="showHint()">
+              <input type="image" src="src/imgs/search.png" height="40" ng-show="gameVariables.userWinStatus || !gameVariables.incorrectGuessesAllowed" ng-click="getDefinition()">
+            </div>
+            <div class="col-12">
+              <button ng-show="!gameVariables.incorrectGuessesAllowed || gameVariables.userWinStatus" class="btn btn-primary" ng-click="newGame()" ng-cloak>New Game!</button>
+            </div>
+          </div>  
         </div>
       </div>
       <div class="row">

@@ -69,7 +69,7 @@ app.controller('GameController', ['$scope', '$log', '$http', function($scope, $l
     } else {
       $http({
       method: 'GET',
-      url: 'https://api.wordnik.com:80/v4/word.json/' + selectedWord + '/definitions?limit=1&includeRelated=true&sourceDictionaries=all&useCanonical=true&includeTags=false&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5'
+      url: 'http://api.wordnik.com:80/v4/word.json/' + selectedWord + '/definitions?limit=1&includeRelated=true&sourceDictionaries=all&useCanonical=true&includeTags=false&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5'
     }).then(function successCallback(wordObject) {
       console.log(wordObject)
       if (wordObject.data[0]) {
@@ -95,7 +95,7 @@ app.controller('GameController', ['$scope', '$log', '$http', function($scope, $l
     // API call to get a random word
     $http({
       method: 'GET',
-      url: 'https://api.wordnik.com:80/v4/words.json/randomWord?hasDictionaryDef=true&excludePartOfSpeech=abbreviation&minCorpusCount=0&maxCorpusCount=10&minDictionaryCount=1&maxDictionaryCount=10&minLength=5&maxLength=10&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5'
+      url: 'http://api.wordnik.com:80/v4/words.json/randomWord?hasDictionaryDef=true&excludePartOfSpeech=abbreviation&minCorpusCount=0&maxCorpusCount=10&minDictionaryCount=1&maxDictionaryCount=10&minLength=5&maxLength=10&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5'
     }).then(function successCallback(wordObject) {
       $scope.gameVariables.defineWord = false
       selectedWord = wordObject.data.word
